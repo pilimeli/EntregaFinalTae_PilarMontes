@@ -1,0 +1,13 @@
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Suite">
+    <parameter name="browser" value="chrome"/>
+    <listeners>
+        <listener class-name="com.globant.test.Listeners"/>
+    </listeners>
+    <test name="BaseTests">
+        <classes>
+            <class name="com.globant.test.EjercicioFinal"/>
+        </classes>
+    </test>
+</suite>
