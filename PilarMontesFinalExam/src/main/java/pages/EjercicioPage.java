@@ -3,10 +3,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
+
 import java.util.List;
+import java.util.Set;
+
 
 
 public class EjercicioPage extends BasePage {
+
 
     /**
      *
@@ -58,6 +63,16 @@ public class EjercicioPage extends BasePage {
     @FindBy(css = ".dialog-done")
     WebElement doneButton;
 
+    @FindBy(css="button[data-testid='submit-button']")
+    WebElement searchButton;
+
+    @FindBy(id="listings-sort")
+    WebElement dropdownSort;
+
+    @FindBy(css="option[data-opt-id='ARRIVAL_DECREASING' ]")
+    private WebElement arrivalLatest;
+
+
 
 
     /**
@@ -104,10 +119,31 @@ public class EjercicioPage extends BasePage {
          * clic Done
          */
         useElementUntilClickable(doneButton).click();
-
-
     }
 
+    /**
+     * Clic On Search
+     */
+
+    public void clickOnSearch() {
+        useElementUntilClickable(searchButton).click();
+    }
+
+
+
+    /**
+     * Sort by dropdown
+     */
+
+   public void  sortByDropdown(String option){
+       useElementUntilClickable(dropdownSort).click();
+       Select dropdown = new Select(dropdownSort);
+       useElementUntilClickable(arrivalLatest);
+       dropdown.selectByValue(option);
+   }
+    public WebElement getsortByDropdown() {
+        return useElementUntilClickable(dropdownSort);
+    }
 
 
 

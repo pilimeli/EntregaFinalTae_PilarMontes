@@ -6,7 +6,8 @@ import pages.EjercicioPage;
 public class EjercicioFinal extends BaseTests {
     EjercicioPage page;
 
-    @BeforeMethod
+
+    @BeforeSuite
     @Parameters({"browser"})
     public void setUppage(String browser) {
         initDriver(browser);
@@ -26,9 +27,9 @@ public class EjercicioFinal extends BaseTests {
         page.goToFlightMenu();
         page.setFlightFilter(from, to);
         page.selectDepartingDate();
-
+        page.clickOnSearch();
+        Assert.assertNotNull(page.getsortByDropdown());
     }
-
     /**
      *
      * @return Filters flights
@@ -42,9 +43,24 @@ public class EjercicioFinal extends BaseTests {
         return roundtrip;
      }
 
+    /**
+     * Select Dropdown
+     */
+    @Test (dataProvider = "dropdowoption", priority = 1)
+    public void sortDropDown(String option){
+        page.sortByDropdown(option);
+    }
 
 
-
+    @DataProvider(name="dropdowoption")
+    public Object[] getDropData(){
+        Object [] droplist = new Object[4];
+        droplist[0]="PRICE_INCREASING";
+        droplist[1]="DURATION_INCREASING";
+        droplist[2]="DEPARTURE_INCREASING";
+        droplist[3]="ARRIVAL_INCREASING";
+        return droplist;
+    }
 
 }
 

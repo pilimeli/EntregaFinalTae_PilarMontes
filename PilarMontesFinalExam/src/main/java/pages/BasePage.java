@@ -11,6 +11,8 @@ public class BasePage {
     private WebDriver driver;
     private WebDriverWait webdriverwait;
 
+
+
     /**
      * @param pDriver
      */
@@ -57,8 +59,7 @@ public class BasePage {
         return getWait().until(ExpectedConditions.elementToBeClickable(element));
     }
 
-
-    public void waitForFrameLoaded(By element) {
+    public void waitForFrameLoaded(WebElement element) {
         getWait().until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(element));
         try {
             Thread.sleep(5000);
