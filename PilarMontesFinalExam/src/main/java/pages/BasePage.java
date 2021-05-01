@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.util.List;
 
 
@@ -57,14 +56,30 @@ public class BasePage {
         return element.getText();
     }
 
+    /**
+     * Element clickable
+     * @param element
+     * @return
+     */
+
     public WebElement useElementUntilClickable(WebElement element) {
         return getWait().until(ExpectedConditions.elementToBeClickable(element));
     }
+
+    /**
+     * Count of Elements
+     * @param elements
+     * @return
+     */
     public int countElements(List<WebElement> elements) {
         getWait().until(ExpectedConditions.visibilityOfAllElements(elements));
         return elements.size();
     }
 
+    /**
+     * implementacion of the wait
+     * @param element
+     */
     public void waitForFrameLoaded(WebElement element) {
         getWait().until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(element));
         try {

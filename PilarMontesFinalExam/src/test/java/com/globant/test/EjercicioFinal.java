@@ -6,7 +6,10 @@ import pages.EjercicioPage;
 public class EjercicioFinal extends BaseTests {
     EjercicioPage page;
 
-
+    /**
+     * Run the browser Chrome
+     * @param browser
+     */
     @BeforeSuite
     @Parameters({"browser"})
     public void setUppage(String browser) {
@@ -20,7 +23,7 @@ public class EjercicioFinal extends BaseTests {
    // }
 
     /**
-     * search a Flight
+     * search a Flight home Page
      */
     @Test (dataProvider = "flightdata", priority = 0)
     public void searchFlight(String from, String to) {
@@ -35,7 +38,7 @@ public class EjercicioFinal extends BaseTests {
     }
     /**
      *
-     * @return Filters flights
+     * @return Filters flights home page
      */
 
     @DataProvider(name = "flightdata")

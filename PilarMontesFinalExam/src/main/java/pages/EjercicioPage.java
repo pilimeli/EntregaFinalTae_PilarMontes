@@ -1,16 +1,11 @@
 package pages;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
 import java.util.List;
 
 
-
-
 public class EjercicioPage extends BasePage {
-
 
     /**
      *
@@ -65,8 +60,6 @@ public class EjercicioPage extends BasePage {
     @FindBy(css="button[data-testid='submit-button']")
     WebElement searchButton;
 
-    @FindBy(id="listings-sort")
-    WebElement dropdownSort;
 
     @FindBy(css = "button[data-test-id=\"select-link\"]") List<WebElement> searchResult;
 
@@ -82,7 +75,7 @@ public class EjercicioPage extends BasePage {
     }
 
     /**
-     *
+     * Search the flight home page
      * @param from
      * @param to
      */
@@ -96,31 +89,31 @@ public class EjercicioPage extends BasePage {
     }
 
     /**
-     * Select de date
+     * Select the date of the flight home page
      */
     public void selectDepartingDate() {
         useElementUntilClickable(departingDateTextbox).click();
 
         /**
-         * Clic 2 times
+         * Clic 2 times data picker home page
          */
         useElementUntilClickable(nextButton).click();
         useElementUntilClickable(nextButton).click();
 
-        /** Select first day of month until 15
+        /** Select first day of month until 15 data picker home page
          *
          */
         useElementUntilClickable(dayNumberOne.get(0)).click();
         useElementUntilClickable(toDay.get(0)).click();
 
         /**
-         * clic Done
+         * clic Done data picker home page
          */
         useElementUntilClickable(doneButton).click();
     }
 
     /**
-     * Clic On Search
+     * Clic On Search home page
      */
 
     public void clickOnSearch() {
@@ -128,9 +121,7 @@ public class EjercicioPage extends BasePage {
     }
 
     /**
-     * Flight duration
-     *
-     *
+     * Flight duration second page
      */
 
     public int countFlightResults() {
@@ -139,7 +130,9 @@ public class EjercicioPage extends BasePage {
     public int countFlightDurationResults() {
         return countElements(flightDurationResults);
     }
-
+    /**
+     * Sort by duration (Second page)
+     */
 
 }
 
