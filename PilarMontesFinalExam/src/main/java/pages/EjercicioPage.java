@@ -4,9 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
-
 import java.util.List;
-import java.util.Set;
+
 
 
 
@@ -69,10 +68,9 @@ public class EjercicioPage extends BasePage {
     @FindBy(id="listings-sort")
     WebElement dropdownSort;
 
-    @FindBy(css="option[data-opt-id='ARRIVAL_DECREASING' ]")
-    private WebElement arrivalLatest;
+    @FindBy(css = "button[data-test-id=\"select-link\"]") List<WebElement> searchResult;
 
-
+    @FindBy(css = "div[data-test-id=\"journey-duration\"]") List<WebElement> flightDurationResults;
 
 
     /**
@@ -129,22 +127,18 @@ public class EjercicioPage extends BasePage {
         useElementUntilClickable(searchButton).click();
     }
 
-
-
     /**
-     * Sort by dropdown
+     * Flight duration
+     *
+     *
      */
 
-   public void  sortByDropdown(String option){
-       useElementUntilClickable(dropdownSort).click();
-       Select dropdown = new Select(dropdownSort);
-       useElementUntilClickable(arrivalLatest);
-       dropdown.selectByValue(option);
-   }
-    public WebElement getsortByDropdown() {
-        return useElementUntilClickable(dropdownSort);
+    public int countFlightResults() {
+        return countElements(searchResult);
     }
-
+    public int countFlightDurationResults() {
+        return countElements(flightDurationResults);
+    }
 
 
 }

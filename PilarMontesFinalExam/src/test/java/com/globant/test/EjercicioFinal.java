@@ -28,7 +28,10 @@ public class EjercicioFinal extends BaseTests {
         page.setFlightFilter(from, to);
         page.selectDepartingDate();
         page.clickOnSearch();
-        Assert.assertNotNull(page.getsortByDropdown());
+
+
+        Assert.assertEquals(page.countFlightResults(), page.countFlightDurationResults());
+
     }
     /**
      *
@@ -43,24 +46,6 @@ public class EjercicioFinal extends BaseTests {
         return roundtrip;
      }
 
-    /**
-     * Select Dropdown
-     */
-    @Test (dataProvider = "dropdowoption", priority = 1)
-    public void sortDropDown(String option){
-        page.sortByDropdown(option);
-    }
-
-
-    @DataProvider(name="dropdowoption")
-    public Object[] getDropData(){
-        Object [] droplist = new Object[4];
-        droplist[0]="PRICE_INCREASING";
-        droplist[1]="DURATION_INCREASING";
-        droplist[2]="DEPARTURE_INCREASING";
-        droplist[3]="ARRIVAL_INCREASING";
-        return droplist;
-    }
 
 }
 
