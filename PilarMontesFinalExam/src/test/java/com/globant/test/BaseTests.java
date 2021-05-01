@@ -1,21 +1,16 @@
 package com.globant.test;
 
 import org.openqa.selenium.WebDriver;
-import utils.MyDrive;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import com.globant.utils.DriverManager;
 
-public class BaseTests extends MyDrive {
+public class BaseTests {
+    public static WebDriver driver;
+    protected WebDriverWait wait;
 
-    protected MyDriver myDriver;
-    protected WebDriver driver;
-
-    /**
-     * Levantar el Browser
-     *
-     * @param browser
-     */
     public void initDriver(String browser) {
-        myDriver = new MyDriver(browser);
-        driver = myDriver.getDriver();
+        driver = new DriverManager(browser).getDriver();
+        wait = new WebDriverWait(driver, 40);
         driver.manage().window().maximize();
     }
 }

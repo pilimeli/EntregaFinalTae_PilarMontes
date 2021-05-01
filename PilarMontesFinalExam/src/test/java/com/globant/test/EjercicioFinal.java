@@ -1,44 +1,46 @@
 package com.globant.test;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import pages.EjercicioPage;
+import com.globant.pages.HomePage;
+import com.globant.pages.ResultPage;
 
 public class EjercicioFinal extends BaseTests {
-    EjercicioPage page;
 
-    /**
-     * Run the browser Chrome
-     * @param browser
-     */
-    @BeforeSuite
+    @BeforeMethod
     @Parameters({"browser"})
-    public void setUppage(String browser) {
+    public void initializeWebDriver(String browser) {
         initDriver(browser);
-        page = new EjercicioPage(driver);
+
+        driver.get(HomePage.URL);
     }
 
-    //@AfterMethod
-    //public void cerrarPage() {
-        //page.dispose();
-   // }
+    @AfterMethod
+    public void closeBrowser() {
+        if (driver != null) {
+            driver.close();
+        }
+    }
 
     /**
-     * search a Flight home Page
+     * search a Flight
      */
     @Test (dataProvider = "flightdata", priority = 0)
     public void searchFlight(String from, String to) {
-        page.goToFlightMenu();
-        page.setFlightFilter(from, to);
-        page.selectDepartingDate();
-        page.clickOnSearch();
+        HomePage homePage = new HomePage(driver, wait);
 
+        homePage.goToFlightMenu();
+        homePage.setFlightFilter(from, to);
+        homePage.selectDepartingDate();
+        ResultPage resultPage = homePage.search();
 
-        Assert.assertEquals(page.countFlightResults(), page.countFlightDurationResults());
-
+        Assert.assertEquals(resultPage.countFlightResults(), resultPage.countFlightDurationResults());
     }
+
+    
+
     /**
      *
-     * @return Filters flights home page
+     * @return Filters flights
      */
 
     @DataProvider(name = "flightdata")
@@ -48,8 +50,6 @@ public class EjercicioFinal extends BaseTests {
         roundtrip[0][1]="LAX";
         return roundtrip;
      }
-
-
 }
 
 
