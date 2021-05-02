@@ -40,6 +40,9 @@ public class ResultPage extends BasePage {
     @FindBy(css="button[data-test-id='select-button']")
     private WebElement continueFlight;
 
+    @FindBy(css="a[data-test-id=\"forcedChoiceNoThanks\"]")
+    private WebElement noThanks;
+
 
     /**
      * Call secondpage
@@ -112,11 +115,11 @@ public class ResultPage extends BasePage {
     }
 
     /**
-     *Select First Flight LAX
+     *Select First Flight LAS
      */
     public void selectFirstFlight(){
         sleep(5000);
-        firstFlight.get(1).click();
+        firstFlight.get(0).click();
     }
 
     /**
@@ -127,4 +130,16 @@ public class ResultPage extends BasePage {
         sleep(5000);
         continueFlight.click();
     }
+    /**
+     * Select third result Fligh LAX
+     */
+    public void selectThirdFlight(){
+        sleep(5000);
+        firstFlight.get(2).click();
+    }
+    public void noThanksbutton(){
+        noThanks.click();
+    }
+
+
 }

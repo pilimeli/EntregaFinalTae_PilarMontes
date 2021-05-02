@@ -18,13 +18,14 @@ public class EjercicioFinal extends BaseTests {
         driver.get(HomePage.URL);
     }
 
-    /**
+    
     @AfterMethod
     public void closeBrowser() {
         if (driver != null) {
             driver.close();
         }
-    }*/
+    }
+
 
     /**
      * search a Flight
@@ -60,12 +61,12 @@ public class EjercicioFinal extends BaseTests {
     }
 
     /**
-     * Select first result and continue
+     * Select first result ,continue third result and continue
      * @return
      */
 
     @Test (dataProvider = "flightdata", priority = 1)
-    public void validateFirstFlight(String from, String to){
+    public void validateFirstFlightAndThirdFlight(String from, String to){
         HomePage homePage = new HomePage(driver, wait);
         homePage.goToFlightMenu();
         homePage.setFlightFilter(from, to);
@@ -73,8 +74,10 @@ public class EjercicioFinal extends BaseTests {
         ResultPage resultPage = homePage.search();
         resultPage.selectFirstFlight();
         resultPage.clickOnContinue();
+        resultPage.selectThirdFlight();
+        resultPage.clickOnContinue();
+        resultPage.noThanksbutton();
     }
-
 
     /**
      *
