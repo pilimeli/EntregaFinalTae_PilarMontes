@@ -18,7 +18,7 @@ public class EjercicioFinal extends BaseTests {
         driver.get(HomePage.URL);
     }
 
-    
+
     @AfterMethod
     public void closeBrowser() {
         if (driver != null) {
