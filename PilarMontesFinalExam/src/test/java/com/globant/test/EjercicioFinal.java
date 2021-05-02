@@ -43,6 +43,9 @@ public class EjercicioFinal extends BaseTests {
         Assert.assertEquals(resultPage.countFlightResults(), resultPage.countFlightDurationResults());
         validateDropdown(resultPage);
         resultPage.orderByDuration();
+        /**
+         * Assert to see the Duration sort
+         */
         Assert.assertTrue(resultPage.isResultSorted());
     }
 

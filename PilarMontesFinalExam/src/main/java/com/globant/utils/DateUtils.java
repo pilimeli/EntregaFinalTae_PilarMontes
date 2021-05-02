@@ -2,6 +2,9 @@ package com.globant.utils;
 
 import java.time.Duration;
 
+/**
+ * Class to convert the time to do the duration order
+ */
 public class DateUtils {
     private static String cleanDurationText(String duration) {
         return duration.substring(0, duration.indexOf("(")).trim();
