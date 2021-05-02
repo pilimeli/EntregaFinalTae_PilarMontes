@@ -17,8 +17,9 @@ public class EjercicioFinal extends BaseTests {
 
         driver.get(HomePage.URL);
     }
-   /**
-    //@AfterMethod
+
+    /**
+    @AfterMethod
     public void closeBrowser() {
         if (driver != null) {
             driver.close();
@@ -57,6 +58,23 @@ public class EjercicioFinal extends BaseTests {
             Assert.assertTrue(resultPage.isSortContain(item));
         }
     }
+
+    /**
+     * Select first result and continue
+     * @return
+     */
+
+    @Test (dataProvider = "flightdata", priority = 1)
+    public void validateFirstFlight(String from, String to){
+        HomePage homePage = new HomePage(driver, wait);
+        homePage.goToFlightMenu();
+        homePage.setFlightFilter(from, to);
+        homePage.selectDepartingDate();
+        ResultPage resultPage = homePage.search();
+        resultPage.selectFirstFlight();
+        resultPage.clickOnContinue();
+    }
+
 
     /**
      *

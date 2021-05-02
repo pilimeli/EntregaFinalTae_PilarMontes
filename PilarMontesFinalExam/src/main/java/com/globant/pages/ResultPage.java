@@ -13,6 +13,7 @@ import java.util.List;
 
 
 public class ResultPage extends BasePage {
+    public final static String URL = "https://www.travelocity.com/";
 
     /**
      * Selectors second page
@@ -32,6 +33,13 @@ public class ResultPage extends BasePage {
 
     @FindBy(css = "ul[data-test-id='listings'] li[data-test-id='offer-listing'] div[data-test-id='journey-duration']")
     private List<WebElement> durationFlight;
+
+    @FindBy (css= "button[data-test-id='select-link']")
+    List<WebElement> firstFlight;
+
+    @FindBy(css="button[data-test-id='select-button']")
+    private WebElement continueFlight;
+
 
     /**
      * Call secondpage
@@ -103,4 +111,20 @@ public class ResultPage extends BasePage {
         return true;
     }
 
+    /**
+     *Select First Flight LAX
+     */
+    public void selectFirstFlight(){
+        sleep(5000);
+        firstFlight.get(1).click();
+    }
+
+    /**
+     * Clic On continue
+     */
+
+    public void clickOnContinue(){
+        sleep(5000);
+        continueFlight.click();
+    }
 }
