@@ -8,6 +8,10 @@ public class BaseTests {
     public static WebDriver driver;
     protected WebDriverWait wait;
 
+    /**
+     * init browser
+     * @param browser
+     */
     public void initDriver(String browser) {
         driver = new DriverManager(browser).getDriver();
         wait = new WebDriverWait(driver, 40);

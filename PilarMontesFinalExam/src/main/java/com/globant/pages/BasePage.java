@@ -46,6 +46,14 @@ public class BasePage {
         getWait().until(ExpectedConditions.visibilityOfAllElements(elements));
         return elements.size();
     }
+
+    public void sleep(long millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+        }
+    }
+
 }
 
 

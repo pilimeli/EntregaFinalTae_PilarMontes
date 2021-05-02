@@ -67,7 +67,7 @@ public class HomePage extends BasePage {
     }
 
     /**
-     *
+     * locators clickables of home page until
      * @param from
      * @param to
      */
@@ -80,21 +80,33 @@ public class HomePage extends BasePage {
         useElementUntilClickable(selectFirstOptionLax).click();
     }
 
+    /**
+     * Data Picker
+     */
     public void selectDepartingDate() {
         useElementUntilClickable(departingDateTextbox).click();
-
-        //2 times
+        /**
+         * Click two times
+         */
         useElementUntilClickable(nextButton).click();
         useElementUntilClickable(nextButton).click();
 
-        // Select fromDay and toDay
+        /**
+         * Select fromDay and toDay
+         */
         useElementUntilClickable(fromDay.get(0)).click();
         useElementUntilClickable(toDay.get(0)).click();
 
-        //Click done
+        /**
+         * Clic Done
+         */
         useElementUntilClickable(doneButton).click();
     }
 
+    /**
+     * Call Result Page Search button
+     * @return
+     */
     public ResultPage search() {
         useElementUntilClickable(searchButton).click();
         return new ResultPage(getDriver(), getWait());

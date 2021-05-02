@@ -4,6 +4,10 @@ import org.testng.annotations.*;
 import com.globant.pages.HomePage;
 import com.globant.pages.ResultPage;
 
+import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.List;
+
 public class EjercicioFinal extends BaseTests {
 
     @BeforeMethod
@@ -13,13 +17,13 @@ public class EjercicioFinal extends BaseTests {
 
         driver.get(HomePage.URL);
     }
-
-    @AfterMethod
+   /**
+    //@AfterMethod
     public void closeBrowser() {
         if (driver != null) {
             driver.close();
         }
-    }
+    }*/
 
     /**
      * search a Flight
@@ -33,16 +37,28 @@ public class EjercicioFinal extends BaseTests {
         homePage.selectDepartingDate();
         ResultPage resultPage = homePage.search();
 
+        /**
+         *  Flight duration and comparate the results and dropdwon list
+         */
         Assert.assertEquals(resultPage.countFlightResults(), resultPage.countFlightDurationResults());
+        validateDropdown(resultPage);
+        resultPage.orderByDuration();
+        Assert.assertTrue(resultPage.isResultSorted());
     }
 
-    
+    /**
+     * Box to comparate dropdown list
+     */
+    private void validateDropdown(ResultPage resultPage){
+        for (String item : dropDownList()){
+            Assert.assertTrue(resultPage.isSortContain(item));
+        }
+    }
 
     /**
      *
-     * @return Filters flights
+     * @return Data Filters flights
      */
-
     @DataProvider(name = "flightdata")
     public Object[][] getFlightData(){
         Object [][] roundtrip =new Object[1][2];
@@ -50,6 +66,18 @@ public class EjercicioFinal extends BaseTests {
         roundtrip[0][1]="LAX";
         return roundtrip;
      }
+
+    /**
+     * Return the box order by Price,departure, Arrival and duration
+     */
+    public List<String> dropDownList() {
+        List<String> items = new ArrayList<>();
+        items.add("Price");
+        items.add("Duration");
+        items.add("Departure");
+        items.add("Arrival");
+        return items;
+    }
 }
 
 
