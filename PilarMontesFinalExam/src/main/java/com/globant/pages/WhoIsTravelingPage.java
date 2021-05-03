@@ -5,9 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.List;
-
 public class WhoIsTravelingPage extends BasePage {
+
     /**
      * @param driver
      * @param wait
@@ -36,7 +35,6 @@ public class WhoIsTravelingPage extends BasePage {
     /**
      * Methods to get the information of the flight
      */
-
     public String informationOfDeparture(){
         useElementUntilClickable(departure);
         return departure.getText();

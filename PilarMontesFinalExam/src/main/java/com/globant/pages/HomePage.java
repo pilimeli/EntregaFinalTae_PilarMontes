@@ -85,6 +85,7 @@ public class HomePage extends BasePage {
      */
     public void selectDepartingDate() {
         useElementUntilClickable(departingDateTextbox).click();
+
         /**
          * Click two times
          */

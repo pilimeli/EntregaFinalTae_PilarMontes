@@ -77,8 +77,8 @@ public class ResultPage extends BasePage {
             }
         }
         return false;
-
     }
+
     /**
     Sort By Duration
      */
@@ -86,7 +86,6 @@ public class ResultPage extends BasePage {
         Select orderBy = new Select(dropListDuration);
         orderBy.selectByVisibleText("Duration (Shortest)");
         sleep(5000);
-
     }
 
     /**
@@ -110,7 +109,6 @@ public class ResultPage extends BasePage {
                 return false;
             }
         }
-
         return true;
     }
 
@@ -130,6 +128,7 @@ public class ResultPage extends BasePage {
         sleep(5000);
         continueFlight.click();
     }
+
     /**
      * Select third result Fligh LAX
      */
@@ -142,8 +141,6 @@ public class ResultPage extends BasePage {
      * Call CheckOutPage from no thanks button
      * @return
      */
-
-
     public void changeToCheckOutPage(String tab) {
         ArrayList<String> handles = new ArrayList<>(getDriver().getWindowHandles());
         for (String data : handles) {
@@ -158,8 +155,4 @@ public class ResultPage extends BasePage {
         noThanks.click();
         return new CheckOutPage(getDriver(), getWait());
     }
-
-
-
-
 }
