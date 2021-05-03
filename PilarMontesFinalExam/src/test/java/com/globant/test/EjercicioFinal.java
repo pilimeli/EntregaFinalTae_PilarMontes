@@ -20,12 +20,12 @@ public class EjercicioFinal extends BaseTests {
     /**
      Close the browser
      */
-    //@AfterMethod
-    //public void closeBrowser() {
-      //  if (driver != null) {
-        //    driver.close();
-        //}
-    //}
+    @AfterMethod
+    public void closeBrowser() {
+      if (driver != null) {
+          driver.close();
+        }
+    }
 
     /**
      * search a Flight
