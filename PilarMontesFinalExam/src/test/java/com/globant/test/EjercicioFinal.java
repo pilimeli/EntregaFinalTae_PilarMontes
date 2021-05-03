@@ -1,11 +1,9 @@
 package com.globant.test;
 
-import com.globant.pages.BasePage;
-import com.globant.pages.CheckOutPage;
+import com.globant.pages.*;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import com.globant.pages.HomePage;
-import com.globant.pages.ResultPage;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +45,7 @@ public class EjercicioFinal extends BaseTests {
         Assert.assertEquals(resultPage.countFlightResults(), resultPage.countFlightDurationResults());
         validateDropdown(resultPage);
         resultPage.orderByDuration();
+
         /**
          * Assert to see the Duration sort
          */
@@ -66,7 +65,6 @@ public class EjercicioFinal extends BaseTests {
      * Select first result ,continue third result and continue
      * @return
      */
-
     @Test (dataProvider = "flightdata", priority = 1)
     public void validateFlightsPositionAndConfirmPage(String from, String to){
         HomePage homePage = new HomePage(driver, wait);
@@ -87,15 +85,55 @@ public class EjercicioFinal extends BaseTests {
 
          CheckOutPage checkOutPage = new CheckOutPage(driver,wait);
 
-         System.out.println(checkOutPage.totalPriceFlight());
-         System.out.println(checkOutPage.informationFlightDeparture());
-         System.out.println(checkOutPage.informationFlightReturn());
 
          Assert.assertEquals("Trip total", checkOutPage.totalPriceFlight());
          Assert.assertEquals("Las Vegas to Los Angeles", checkOutPage.informationFlightDeparture());
          Assert.assertEquals("Los Angeles to Las Vegas", checkOutPage.informationFlightReturn());
          checkOutPage.clickOnCheckout();
          }
+
+    /**
+     * Test Of Who's Traveling, five validations
+     * @param from
+     * @param to
+     */
+
+    @Test (dataProvider = "flightdata", priority = 2)
+    public void validateWhoIsTraveling(String from, String to){
+        HomePage homePage = new HomePage(driver, wait);
+        homePage.goToFlightMenu();
+        homePage.setFlightFilter(from, to);
+        homePage.selectDepartingDate();
+        ResultPage resultPage = homePage.search();
+        resultPage.selectFirstFlight();
+        resultPage.clickOnContinue();
+        resultPage.selectThirdFlight();
+        resultPage.clickOnContinue();
+        resultPage.noThanksbutton();
+        resultPage.changeToCheckOutPage("Flight Details");
+
+        /**
+         * ChecOutpage validations about price, departure and return flight
+         */
+
+        CheckOutPage checkOutPage = new CheckOutPage(driver,wait);
+
+
+        Assert.assertEquals("Trip total", checkOutPage.totalPriceFlight());
+        Assert.assertEquals("Las Vegas to Los Angeles", checkOutPage.informationFlightDeparture());
+        Assert.assertEquals("Los Angeles to Las Vegas", checkOutPage.informationFlightReturn());
+        checkOutPage.clickOnCheckout();
+
+        /**
+         * Validations five points
+         */
+        WhoIsTravelingPage whoisTravelingPage = new WhoIsTravelingPage(driver,wait);
+        Assert.assertEquals(whoisTravelingPage.informationOfDeparture() ,"Los Angeles (LAX) to Las Vegas (LAS)");
+        Assert.assertEquals(whoisTravelingPage.informationOfSecondRound() ,"Las Vegas (LAS) to Los Angeles (LAX)");
+        Assert.assertEquals(whoisTravelingPage.informationOfRoundTrip() ,"Roundtrip flight");
+        Assert.assertEquals(whoisTravelingPage.priceSummaryFlight() ,"Your price summary");
+        Assert.assertEquals(whoisTravelingPage.completeBooking() ,"Complete Booking");
+    }
 
     /**
      *

@@ -7,7 +7,9 @@
     </listeners>
     <test name="BaseTests">
         <classes>
-            <class name="com.globant.test.EjercicioFinal"/>
+            <class name="com.globant.test.EjercicioFinal">
+        </class>
+
         </classes>
     </test>
 </suite>
