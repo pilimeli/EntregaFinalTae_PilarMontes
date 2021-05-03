@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
+import java.util.Set;
 
 
 public class BasePage {
@@ -41,7 +42,6 @@ public class BasePage {
     public WebElement useElementUntilClickable(WebElement element) {
         return getWait().until(ExpectedConditions.elementToBeClickable(element));
     }
-
     public int countElements(List<WebElement> elements) {
         getWait().until(ExpectedConditions.visibilityOfAllElements(elements));
         return elements.size();

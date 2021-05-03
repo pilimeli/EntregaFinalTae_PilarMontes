@@ -16,6 +16,15 @@ public class ResultPage extends BasePage {
     public final static String URL = "https://www.travelocity.com/";
 
     /**
+     * Call secondpage
+     * @param driver
+     * @param wait
+     */
+    public ResultPage(WebDriver driver, WebDriverWait wait) {
+        super(driver, wait);
+    }
+
+    /**
      * Selectors second page
      */
 
@@ -43,15 +52,6 @@ public class ResultPage extends BasePage {
     @FindBy(css="a[data-test-id=\"forcedChoiceNoThanks\"]")
     private WebElement noThanks;
 
-
-    /**
-     * Call secondpage
-     * @param driver
-     * @param wait
-     */
-    public ResultPage(WebDriver driver, WebDriverWait wait) {
-        super(driver, wait);
-    }
 
     /**
      * Flights count and comparation
@@ -137,9 +137,29 @@ public class ResultPage extends BasePage {
         sleep(5000);
         firstFlight.get(2).click();
     }
-    public void noThanksbutton(){
-        noThanks.click();
+
+    /**
+     * Call CheckOutPage from no thanks button
+     * @return
+     */
+
+
+    public void changeToCheckOutPage(String tab) {
+        ArrayList<String> handles = new ArrayList<>(getDriver().getWindowHandles());
+        for (String data : handles) {
+            getDriver().switchTo().window(data);
+            if (getDriver().getTitle().contains(tab)) {
+                break;
+            }
+        }
     }
+
+    public CheckOutPage noThanksbutton(){
+        noThanks.click();
+        return new CheckOutPage(getDriver(), getWait());
+    }
+
+
 
 
 }
